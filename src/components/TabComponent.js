@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Tab, Tabs, TabList, } from 'react-tabs';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import TabDoor from './tabs.nav/TabDoor'
 import TabDevices from './tabs.nav/TabDevices'
 import TabPrices from './tabs.nav/TabPrices'
+import TabContentOne from "./TabContentOne";
 import "../css/TabsNav.css"
 
 class TabComponent extends Component {
@@ -20,7 +21,7 @@ class TabComponent extends Component {
                     <TabList className="tab-nav-container">
                         <Tab className={`${this.state.tabIndex === 0 ? 'tab-selected active' : null}`}> 
                             <TabDoor />
-                            <p><strong>No commitments <br/>
+                            <p style={{ marginBottom: '1.875rem' }}><strong>No commitments <br/>
                             Cancel online at anytime
                             </strong></p>
                         </Tab>
@@ -35,6 +36,10 @@ class TabComponent extends Component {
                             </strong></p>
                         </Tab>
                     </TabList>
+                    {/* Tabs Content */}
+                    <TabPanel>
+                        <TabContentOne />
+                    </TabPanel>
                 </Tabs>
             </div>
         )
