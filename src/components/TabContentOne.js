@@ -8,9 +8,12 @@ function TabContentOne() {
         <TabContentContainer>
             <div className="container">
                 <div className="tab-content">
-                    <span>If you decide netflix isn't for you - no problem. No commitment. Cancel online anytime.</span>
+                    <div>
+                    <span style={{ marginBottom: '2rem'}}>
+                        If you decide netflix isn't for you - no problem. No commitment. Cancel online anytime.</span>
                     <br/>
-                    <Button>try it now</Button>
+                    <Button style={{ marginTop: '2rem' }}>try it now</Button>
+                    </div>
                     <img src={Img} alt="alt goes here"/>
 
                 </div>
@@ -25,6 +28,10 @@ export default TabContentOne
 
 const TabContentContainer = styled.div`
 background: var(--main-deep-dark);
+
+.container {
+    margin: 0 10%;
+}
 
 img {
     width: 31.875rem;
