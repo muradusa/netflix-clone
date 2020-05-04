@@ -3,7 +3,10 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import TabDoor from './tabs.nav/TabDoor'
 import TabDevices from './tabs.nav/TabDevices'
 import TabPrices from './tabs.nav/TabPrices'
+//Tabs Content
 import TabContentOne from "./TabContentOne";
+import TabContentTwo from "./TabContentTwo";
+
 import "../css/TabsNav.css"
 
 class TabComponent extends Component {
@@ -39,6 +42,9 @@ class TabComponent extends Component {
                     {/* Tabs Content */}
                     <TabPanel>
                         <TabContentOne />
+                    </TabPanel>
+                    <TabPanel>
+                        <TabContentTwo />
                     </TabPanel>
                 </Tabs>
             </div>
