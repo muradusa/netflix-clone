@@ -9,6 +9,7 @@ function TabContentTwo() {
   return (
     <TabContainer>
       <div className="tab-content">
+        {/* Tab Top Content */}
         <div className="tab-top-content">
           <span style={{ fontSize: "1.5rem" }}>
             Watch TV shows and movies anytime, anywhere - personalized for you.
@@ -80,4 +81,21 @@ const TabContainer = styled.div`
     margin: 0 1.25rem;
     grid-column: 10 / 12;
   }
+
+//Tab Bottom Content
+.tab-bottom-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  margin-top: 2rem;
+}
+
+h3 {
+  margin: 0.5rem, 0;
+}
+
+p {
+  color: var(--main-grey);
+}
+
 `;
