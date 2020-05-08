@@ -97,7 +97,29 @@ const HeaderComponent = styled.div`
     text-align: center;
     flex-direction: column;
     z-index: 1;
+    ${customMedia.lessThan('smTablet')`
+    display: grid;
+    grid-template-rows: repeat(3, 60px);
+    margin-top: 6rem;
+    `}
   }
+
+  .main-offer-btn {
+    ${customMedia.lessThan('lgDesktop')`
+    margin: 0 33%;
+    font-size: 1.5rem;
+    `}
+    ${customMedia.lessThan('mdDesktop')`
+    margin: 0 25%;
+    font-size: 1.5rem;
+    `}
+    ${customMedia.lessThan('tablet')`
+    margin: 0 20%;
+    font-size: 1.3rem;
+    `}
+  }
+
+
 `;
 
 // Main Title
@@ -107,6 +129,10 @@ const Title = styled.h1`
   font-size: 5rem;
   font-weight: 700;
   line-height: 1.1em;
+  ${customMedia.lessThan('tablet')`
+  font-size: 2.6rem;
+  `}
+
 `;
 
 // Subtitle
@@ -117,4 +143,9 @@ const Subtitle = styled.h2`
   line-height: 1.25rem;
   margin: 0 0 1.875rem;
   text-transform: uppercase;
+  ${customMedia.lessThan('smTablet')`
+  font-size: 1.4rem;
+  margin: 0;
+  `}
+
 `;
