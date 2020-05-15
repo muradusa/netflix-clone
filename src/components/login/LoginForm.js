@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import FBlogo from "../../images/fb-logo.png";
+import { generateMedia } from "styled-media-query";
 
 const regexp = RegExp(
   /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
 );
 
 const initState = {
+  checked: true,
   email: " ",
   password: "",
   emailError: " ",
@@ -64,6 +66,13 @@ class LoginForm extends Component {
     }
   };
 
+  //Checkbox
+  handlerCheckbox = e => {
+      this.setState({
+          checked: e.target.checked
+      })
+  }
+
   render() {
     return (
       <FormContainer>
@@ -74,8 +83,8 @@ class LoginForm extends Component {
               <input
                 className={
                   this.state.emailError
-                    ? 'input-error input-empty'
-                    : 'input-epmty'
+                    ? "input-error input-empty"
+                    : "input-epmty"
                 }
                 type="email"
                 onChange={this.handleEmailChange}
@@ -90,8 +99,8 @@ class LoginForm extends Component {
               <input
                 className={
                   this.state.passwordError
-                    ? 'input-error input-empty'
-                    : 'input-empty'
+                    ? "input-error input-empty"
+                    : "input-empty"
                 }
                 type="password"
                 onChange={this.handlePasswordChange}
@@ -110,7 +119,11 @@ class LoginForm extends Component {
             </div>
             <label className="checkbox-container">
               Remember me
-              <input type="checkbox" checked />
+              <input 
+              type="checkbox" 
+              defaultChecked={this.state.checked}
+              onChange={this.handlerCheckbox}
+                />
               <span className="checkmark"></span>
             </label>
             <Link to="/" className="need-help">
@@ -133,9 +146,18 @@ class LoginForm extends Component {
       </FormContainer>
     );
   }
+
+  newMethod() {
+    return "#db7302";
+  }
 }
 
 export default LoginForm;
+
+//Media
+const customMedia = generateMedia({
+    tablet: '640px'
+})
 
 //Form Container
 
@@ -144,6 +166,9 @@ const FormContainer = styled.div`
   justify-content: center;
   position: relative;
   z-index: 5;
+  ${customMedia.lessThan('tablet')`
+    border-bottom: 0.9px solid #999;
+    `}
 
   .form-container {
     background: rgba(0, 0, 0, 0.8);
@@ -151,6 +176,10 @@ const FormContainer = styled.div`
     width: 28.125rem;
     height: 41.25rem;
     padding: 4rem;
+    ${customMedia.lessThan('tablet')`
+    padding: 0.6rem;
+    height: 35rem;
+    `}
   }
 
   .input-container {
@@ -236,6 +265,10 @@ const FormContainer = styled.div`
     color: #828282;
     margin-left: 6.6rem;
     font-size: 0.9rem;
+    ${customMedia.lessThan('tablet')`
+    margin-left: 13rem;
+    
+    `}
   }
 
   .bottom-form img {
