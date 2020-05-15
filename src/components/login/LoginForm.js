@@ -9,7 +9,7 @@ const regexp = RegExp(
 
 const initState = {
   email: " ",
-  password: " ",
+  password: "",
   emailError: " ",
   passwordError: " ",
 };
@@ -18,13 +18,13 @@ class LoginForm extends Component {
   state = initState;
   handleEmailChange = (e) => {
     this.setState({
-      email: e.target.value
+      email: e.target.value,
     });
   };
 
   handlePasswordChange = (e) => {
     this.setState({
-      password: e.target.value
+      password: e.target.value,
     });
   };
 
@@ -32,17 +32,15 @@ class LoginForm extends Component {
   validate = () => {
     let inputError = false;
     const errors = {
-      emailError: ' ',
-      passwordError: ' '
+      emailError: " ",
+      passwordError: " ",
     };
     if (!this.state.email) {
       inputError = true;
       errors.emailError = "Please enter a valid email";
     } else if (!this.state.email.match(regexp)) {
       inputError = true;
-      errors.emailError = (
-        <span> Your email address must be valid</span>
-      );
+      errors.emailError = <span> Your email address must be valid</span>;
     }
 
     if (this.state.password.length < 4) {
@@ -57,8 +55,8 @@ class LoginForm extends Component {
     return inputError;
   };
 
-  onSubmit = e => {
-    e.preventDefault()
+  onSubmit = (e) => {
+    e.preventDefault();
 
     const err = this.validate();
     if (!err) {
@@ -74,27 +72,39 @@ class LoginForm extends Component {
             <h1>Sign In</h1>
             <div className="input-container">
               <input
-                className="input-empty"
+                className={
+                  this.state.emailError
+                    ? 'input-error input-empty'
+                    : 'input-epmty'
+                }
                 type="email"
                 onChange={this.handleEmailChange}
+                value={this.state.email}
                 required
               />
 
               <label>Email or Phone Number</label>
-              <span style={{ color: '#db7302' }}>{this.state.emailError}</span>
+              <span style={{ color: "#db7302" }}>{this.state.emailError}</span>
             </div>
             <div className="input-container">
               <input
-                className="input-empty"
+                className={
+                  this.state.passwordError
+                    ? 'input-error input-empty'
+                    : 'input-empty'
+                }
                 type="password"
                 onChange={this.handlePasswordChange}
+                value={this.state.password}
                 required
               />
               <label>Password</label>
-              <span style={{ color: '#db7302' }}>{this.state.passwordError}</span>
+              <span style={{ color: "#db7302" }}>
+                {this.state.passwordError}
+              </span>
             </div>
             <div className="input-container">
-              <Button type="submit" onClick={e => this.onSubmit(e)}>
+              <Button type="submit" onClick={(e) => this.onSubmit(e)}>
                 Sign In
               </Button>
             </div>
@@ -181,6 +191,9 @@ const FormContainer = styled.div`
     outline: none;
   }
 
+  .input-error {
+    border-bottom: 1px solid #db7302;
+  }
   //Checkbox
   .checkbox-container {
     margin-left: 0.75rem;
